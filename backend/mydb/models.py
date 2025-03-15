@@ -1,10 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from datetime import date
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///monitoring.db"
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 class Satellite(db.Model):
     
@@ -103,7 +100,5 @@ class Region(db.Model):
         else:
             raise ValueError(f"{longitude} is not a float")
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+
 

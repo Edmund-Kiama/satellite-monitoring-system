@@ -1,8 +1,8 @@
 
-from mydb.seed import get_sats, get_reg, get_data, get_sat_ids, get_data_ids, get_reg_ids
-from mydb.seed import delete_sat, delete_region, delete_data
-from mydb.seed import add_sat, add_region, add_data
-from mydb.seed import update_data, update_region, update_sat
+from seed import get_sats, get_reg, get_data, get_sat_ids, get_data_ids, get_reg_ids
+from seed import delete_sat, delete_region, delete_data
+from seed import add_sat, add_region, add_data
+from seed import update_data, update_region, update_sat
 from datetime import datetime, date
 
 on_loop = True

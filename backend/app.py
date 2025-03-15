@@ -1,10 +1,14 @@
 from flask import Flask, jsonify, request
-from mydb.models import db  , Satellite, SatelliteData, Region
+from mydb.models import db
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///monitoring.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+
 db.init_app(app)
+
+from mydb.models import Satellite, SatelliteData, Region
 
 
 @app.route('/')
@@ -24,7 +28,7 @@ def get_satellites():
     } for sat in satellites])
 
 @app.route("/satellites", methods=["POST"])
-def add_satellites():
+def add_satellite():
     data = request.json
     new_sat = Satellite(
         name=data['name'], 
@@ -38,7 +42,7 @@ def add_satellites():
     return jsonify({"message": "Satellite added!"})
 
 @app.route("/satellites/<int:id>", methods=["PUT"])
-def edit_satellites(id):
+def edit_satellite(id):
     data = request.json
     sat = Satellite.query.get(id)
 
@@ -68,7 +72,7 @@ def delete_satellite(id):
 
 
 #mark: data table 
-@app.route("/satellite-data", methods=["GET"])
+@app.route("/satellites-data", methods=["GET"])
 def get_data():
     satellite_data = SatelliteData.query.all()
     return jsonify([{
@@ -125,7 +129,7 @@ def delete_data(id):
 
 #mark region table 
 @app.route("/regions", methods=["GET"])
-def get_region():
+def get_regions():
     regions = Region.query.all()
     return jsonify([{
         "id": reg.id,
@@ -178,6 +182,8 @@ def delete_region(id):
     return jsonify({"message": "Region deleted!"})
 
 
-
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+
     app.run(debug=True)
