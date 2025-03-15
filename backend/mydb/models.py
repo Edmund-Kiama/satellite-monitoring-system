@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Satellite(db.Model):
-    
     __tablename__ = "satellites"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -13,14 +12,18 @@ class Satellite(db.Model):
     _status = db.Column("status", db.String, nullable=False) # info: active, inactive
     description = db.Column(db.String, nullable=False)
     image_url = db.Column(db.String)
-    country = db.Column(db.String, nullable=False, default='Unknown')
+    country = db.Column(db.String, nullable=False)
+
+    altitude = db.Column(db.String ,nullable=False)
+    speed = db.Column(db.String, nullable=False)
+    launch_date = db.Column(db.Date)
+    type = db.Column(db.String, nullable=False)
 
     regions = db.relationship("Region", back_populates="satellite", lazy="selectin", cascade="all, delete-orphan")
     satellite_data = db.relationship("SatelliteData", back_populates="satellite", lazy="selectin", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Satellite(id: {self.id}, name: {self.name}, orbit_type: {self.orbit_type}, status: {self.status}, description: {self.description}, image_url: {self.image_url}, country: {self.country})"
-       
     @property
     def status(self):
         return self._status
@@ -30,7 +33,6 @@ class Satellite(db.Model):
             self._status = status
         else:
             raise ValueError(f"{status} is Invalid! 'active' or 'inactive' allowed only") 
-    
     @property
     def orbit_type(self):
         return self._orbit_type
@@ -40,7 +42,7 @@ class Satellite(db.Model):
             self._orbit_type = orbit_type
         else:
             raise ValueError(f"{orbit_type} is Invalid! 'MEO', 'LEO', 'GEO' allowed only")
-        
+
 class SatelliteData(db.Model):
 
     __tablename__ = "satellite_data"
@@ -50,7 +52,11 @@ class SatelliteData(db.Model):
     _data_type = db.Column("data_type", db.String, nullable=False)
     data_value = db.Column(db.String, nullable=False)
     date_recorded = db.Column(db.Date, default=date.today) 
-   
+
+    data_accuracy = db.Column(db.String,nullable=False)
+    measurement_unit = db.Column(db.String,nullable=False)
+    source = db.Column(db.String, nullable=False)
+    satellite_orbit = db.Column(db.String, nullable=False)
     satellite = db.relationship("Satellite", back_populates="satellite_data")
 
     def __repr__(self):
@@ -76,12 +82,14 @@ class Region(db.Model):
     name = db.Column(db.String, nullable=False)
     _latitude = db.Column("latitude", db.Float)
     _longitude = db.Column("longitude", db.Float)
-    
+
+    area = db.Column(db.String, nullable=False)
+    climate_type = db.Column(db.String, nullable=False)
+    primary_focus = db.Column(db.String, nullable=False)
     satellite = db.relationship("Satellite", back_populates="regions")
 
     def __repr__(self):
         return f"Region(id: {self.id}, sat_id: {self.sat_id}, name: {self.name}, latitude: {self.latitude}, longitude: {self.longitude})"
-    
     @property
     def latitude(self):
         return self._latitude
@@ -91,7 +99,6 @@ class Region(db.Model):
             self._latitude = latitude
         else:
             raise ValueError(f"{latitude} is not a float")
-    
     @property
     def longitude(self):
         return self._longitude
@@ -101,6 +108,3 @@ class Region(db.Model):
             self._longitude = longitude
         else:
             raise ValueError(f"{longitude} is not a float")
-
-
-
