@@ -1,5 +1,4 @@
 from mydb.models import db,Satellite, SatelliteData, Region
-from sqlalchemy import select
 from datetime import date
 from flask import Flask
 
@@ -13,69 +12,79 @@ def add_seed():
     with app.app_context():
         db.create_all()
         # sat
+        
         landsat = Satellite(
             name = "Landsat-9",
             orbit_type = "LEO",
             status = "active",
-            description = "NASA's Earth observation satellite"
+            description = "NASA's Earth observation satellite",
+            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/LANDSAT-9.jpg/1024px-LANDSAT-9.jpg",
+            country = "USA"
         )
-        landsat_id = db.session.execute(select(Satellite.id).where(Satellite.name == "Landsat-9")).scalar()
 
         geos = Satellite(
             name = "GOES-16",
             orbit_type = "GEO",
             status = "active",
-            description = "NOAA's weather satellite"
+            description = "NOAA's weather satellite",
+            image_url="https://www.nasa.gov/wp-content/uploads/2023/03/goesr_earth_reflection_2012.jpg?resize=1024,680",
+            country = "USA"
         )
-        geos_id = db.session.execute(select(Satellite.id).where(Satellite.name == "GEOS-16")).scalar()
 
         sentinel = Satellite(
             name = "Sentinel-2",
             orbit_type = "LEO",
             status = "active",
-            description = "ESA's Earth observation satellite for land monitoring"
+            description = "ESA's Earth observation satellite for land monitoring",
+            image_url = "https://sentiwiki.copernicus.eu/__attachments/1671710/image-20230517-132224.png?inst-v=4ffdc811-3c3b-4ab5-969e-474a9a1b69a6",
+            country = "European Union"
         )
-        sentinel_id = db.session.execute(select(Satellite.id).where(Satellite.name == "Sentinel-2")).scalar()
 
         himawari = Satellite(
             name = "Himawari-8",
             orbit_type = "GEO",
             status = "active",
-            description = "Japan's weather satellite for Asia-Pacific region"
+            description = "Japan's weather satellite for Asia-Pacific region",
+            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Himawari89_2.jpg/1024px-Himawari89_2.jpg",
+            country = "Japan"
         )
-        himawari_id = db.session.execute(select(Satellite.id).where(Satellite.name == "Himawari-8")).scalar()
 
         terra = Satellite(
             name = "Terra",
             orbit_type = "LEO",
             status = "active",
-            description = "NASA's satellite for global climate and environmental research"
+            description = "NASA's satellite for global climate and environmental research",
+            image_url = "https://www.eoportal.org/ftp/satellite-missions/t/Terra_200722/Terra_Auto37.jpeg",
+            country = "USA"
         )
-        terra_id = db.session.execute(select(Satellite.id).where(Satellite.name == "Terra")).scalar()
 
         aqua = Satellite(
             name = "Aqua",
             orbit_type = "LEO",
             status = "active",
-            description = "NASA's Earth observation satellite for studying water cycles"
+            description = "NASA's Earth observation satellite for studying water cycles",
+            image_url = "https://earthdata.nasa.gov/s3fs-public/styles/hds_large/public/2022-05/AQUA.jpg?VersionId=Oob7cXtgOlFtFmCRIFe2XhnONGC.5inP&itok=kdsMI9DT",
+            country = "USA"
         )
-        aqua_id = db.session.execute(select(Satellite.id).where(Satellite.name == "Aqua")).scalar()
 
         cosmo_sky = Satellite(
             name = "COSMO-SkyMed",
             orbit_type = "LEO",
             status = "active",
-            description = "Italian radar satellite for Earth observation and disaster monitoring"
+            description = "Italian radar satellite for Earth observation and disaster monitoring",
+            image_url = "https://www.eoportal.org/api/cms/documents/163813/3649508/COSMO_Auto32.jpeg",
+            country = "Italy"
         )
-        cosmo_sky_id = db.session.execute(select(Satellite.id).where(Satellite.name == "COSMOS-SkyMed")).scalar()
 
         insat_3d = Satellite(
             name = "INSAT-3D",
             orbit_type = "GEO",
             status = "active",
-            description = "India's weather and environmental monitoring satellite"
+            description = "India's weather and environmental monitoring satellite",
+            image_url = "https://sky-brokers.com/wp-content/uploads/2024/07/INSAT-3DS-in-orbit.jpeg",
+            country = "India"
         )
-        insat_3d_id = db.session.execute(select(Satellite.id).where(Satellite.name == "INSAT-3D")).scalar()    
+ 
 
         db.session.add_all([landsat, geos, sentinel, himawari, terra, aqua, cosmo_sky, insat_3d])
         db.session.commit()

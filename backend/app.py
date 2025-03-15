@@ -1,12 +1,16 @@
 from flask import Flask, jsonify, request
 from mydb.models import db
+from flask_migrate import Migrate
+from datetime import datetime
 
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///monitoring.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
 db.init_app(app)
+migrate = Migrate(app, db)
 
 from mydb.models import Satellite, SatelliteData, Region
 
@@ -24,22 +28,29 @@ def get_satellites():
         "name": sat.name,
         "orbit_type": sat.orbit_type,
         "status": sat.status,
-        "description": sat.description
+        "description": sat.description,
+        "image_url": sat.image_url,
+        "country": sat.country
     } for sat in satellites])
 
 @app.route("/satellites", methods=["POST"])
 def add_satellite():
-    data = request.json
-    new_sat = Satellite(
-        name=data['name'], 
-        orbit_type=data['orbit_type'],
-        status=data['status'],
-        description=data['description']
-        )
-    
-    db.session.add(new_sat)
-    db.session.commit()
-    return jsonify({"message": "Satellite added!"})
+    try:
+        data = request.json
+        new_sat = Satellite(
+            name=data['name'], 
+            orbit_type=data['orbit_type'],
+            status=data['status'],
+            description=data['description'],
+            image_url=data['image_url'],
+            country=data['country']
+            )
+        
+        db.session.add(new_sat)
+        db.session.commit()
+        return jsonify({"message": "Satellite added!"})
+    except:
+        return jsonify({"message": "Error occurred"})
 
 @app.route("/satellites/<int:id>", methods=["PUT"])
 def edit_satellite(id):
@@ -53,6 +64,8 @@ def edit_satellite(id):
     sat.orbit_type = data.get('orbit_type', sat.orbit_type)
     sat.status = data.get('status', sat.status)
     sat.description = data.get('description', sat.description)
+    sat.image_url = data.get('image_url', sat.image_url)
+    sat.country = data.get('country', sat.country)
 
     db.session.commit()
     return jsonify({"message": "Satellite updated!"})
@@ -109,7 +122,10 @@ def edit_data(id):
     sat_data.sat_id = data.get('sat_id', sat_data.sat_id)
     sat_data.data_type = data.get('data_type', sat_data.data_type)
     sat_data.data_value = data.get('data_value', sat_data.data_value)
-    sat_data.date_recorded = data.get('date_recorded', sat_data.date_recorded)
+    
+    date_str = data.get('date_recorded')
+    date_object = datetime.strptime(date_str, '%Y-%m-%d').date()
+    sat_data.date_recorded = date_object
 
     db.session.commit()
     return jsonify({"message": "Satellite Data updated!"})

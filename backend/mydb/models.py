@@ -12,12 +12,14 @@ class Satellite(db.Model):
     _orbit_type = db.Column("orbit_type", db.String, nullable=False) # info: LEO,MEO,GEO
     _status = db.Column("status", db.String, nullable=False) # info: active, inactive
     description = db.Column(db.String, nullable=False)
+    image_url = db.Column(db.String)
+    country = db.Column(db.String, nullable=False, default='Unknown')
 
     regions = db.relationship("Region", back_populates="satellite", lazy="selectin", cascade="all, delete-orphan")
     satellite_data = db.relationship("SatelliteData", back_populates="satellite", lazy="selectin", cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"Satellite(id: {self.id}, name: {self.name}, orbit_type: {self.orbit_type}, status: {self.status}, description: {self.description})"
+        return f"Satellite(id: {self.id}, name: {self.name}, orbit_type: {self.orbit_type}, status: {self.status}, description: {self.description}, image_url: {self.image_url}, country: {self.country})"
        
     @property
     def status(self):
