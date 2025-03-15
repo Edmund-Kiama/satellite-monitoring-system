@@ -249,5 +249,6 @@ def add_seed():
         db.session.add_all([surface_temp, vegetation_index, cloud_cover, wind_speed, ocean_temp, air_quality, hurricane_intensity, ozone_levels, sea_level_rise, polar_ice_extent, earthquake_detection, solar_radiation, precipitation_rate])
         db.session.commit()
 
+add_seed()
 
 
