@@ -8,7 +8,7 @@ class Satellite(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    _orbit_type = db.Column("orbit_type", db.String, nullable=False) # info: LEO,MEO,GEO
+    _orbit_type = db.Column("orbit_type", db.String, nullable=False) # info: LEO,MEO,GEO, Lunar, Solar orbit
     _status = db.Column("status", db.String, nullable=False) # info: active, inactive
     description = db.Column(db.String, nullable=False)
     image_url = db.Column(db.String)
@@ -38,10 +38,10 @@ class Satellite(db.Model):
         return self._orbit_type
     @orbit_type.setter
     def orbit_type(self, orbit_type) -> None:
-        if orbit_type in ["LEO", "MEO", "GEO"]:
+        if orbit_type in ["LEO", "MEO", "GEO", "Lunar", "Solar orbit"]:
             self._orbit_type = orbit_type
         else:
-            raise ValueError(f"{orbit_type} is Invalid! 'MEO', 'LEO', 'GEO' allowed only")
+            raise ValueError(f"{orbit_type} is Invalid! 'MEO', 'LEO', 'GEO', 'Lunar', 'Solar orbit' allowed only")
 
 class SatelliteData(db.Model):
 
@@ -62,7 +62,7 @@ class SatelliteData(db.Model):
     def __repr__(self):
         return f"SatelliteData(id: {self.id},sat_id: {self.sat_id}, data_type: {self.data_type}, data_value: {self.data_value}, date_recorded: {self.date_recorded})"
 
-    #note: This property is just here to fill project requirements
+    #
     @property
     def data_type(self):
         return self._data_type

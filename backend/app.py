@@ -41,6 +41,9 @@ def get_satellites():
 def add_satellite():
     try:
         data = request.json
+
+        data['launch_date'] =  datetime.strptime(data["launch_date"], "%Y-%m-%d").date()
+
         new_sat = Satellite(
         name=data['name'], 
         orbit_type=data['orbit_type'],
@@ -114,6 +117,9 @@ def get_data():
 @app.route("/satellites-data", methods=["POST"])
 def add_data():
     data = request.json
+
+    data['date_recorded'] =  datetime.strptime(data["date_recorded"], "%Y-%m-%d").date()
+
     new_data = SatelliteData(
     sat_id=data['sat_id'], 
     data_type=data['data_type'],
