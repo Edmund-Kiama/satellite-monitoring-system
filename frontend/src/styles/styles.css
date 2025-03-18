@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #111111;
+    align-items: center;
+    padding: 0.5em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar img{
+    height: 2em;
+}
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 4em;
+    list-style: none;
+    align-items: center;
+    margin-right: 4em;
+}
+nav ul li a{
+    text-decoration: none;
+    font-size: 1.25em;
+}
+/*idea:  background img for landing page */
+.landing-page{
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    border-bottom: 1px solid #111111;
+    height: 70vh;
+    padding: 0.5em;
+    padding-bottom: 1em;
+}
+.landing-page h1 {
+    padding: 1em;    
+}
+.landing-page h4{
+    padding: 1em;
+    margin-left: 0.5em;
+    font-size: larger;
+}
+
+
+.satellite{
+    display: flex;
+}
+
+.sat-side{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #111111;
+}
+.sat-side .search-name{
+    padding-bottom: 1.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1.5em;
+    border-bottom: 1px solid #111111;
+}
+.sat-side .filter{
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: 1px solid #111111;
+}
+.sat-side .filter .sat-type{
+    padding-top: 0.5em;
+    padding-bottom: 0.3em;   
+}
+.sat-side .filter .status,
+.sat-side .filter .altitude{
+    padding-top: 1em;
+    padding-bottom: 0.3em;
+}
+.sat-side .filter .checkbox{
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+}
+.sat-side .filter .checkbox .active,
+.sat-side .filter .checkbox .inactive{
+    padding-right: 1em;
+    padding-bottom: 0.3em;
+}
+.sat-side .filter .altitude-io{
+    width: 210px;
+    
+}
+.sat-side .filter em{
+    margin-left: 0.2em;
+}
+
+.sat-results{
+    padding-top: 1em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    padding-bottom: 1em;
+    display: flex;
+}
+.sat-results h3{
+    padding-bottom: 1em;
+}
+.sat-results ul{
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    list-style: none;
+}
+.sat-results ul li{
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+}
+.sat-results ul li p{
+    font-size: smaller;
+}
