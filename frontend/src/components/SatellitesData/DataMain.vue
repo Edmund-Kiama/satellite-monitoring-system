@@ -18,8 +18,15 @@
                 
                 <div class="main-detail-ui">
                     <div class="text-detail">
-                        <h3>{{ props.data.name}}</h3>
+                        <h3>{{ props.data.data_value}}</h3>
                         <ul>
+                            <li>type: {{ props.data.data_type }}</li>
+                            <li>type: {{ props.data.data_type }}</li>
+                            <li>type: {{ props.data.data_type }}</li>
+                            <li>type: {{ props.data.data_type }}</li>
+                            <li>type: {{ props.data.data_type }}</li>
+                            <li>type: {{ props.data.data_type }}</li>
+                            <li>type: {{ props.data.data_type }}</li>
                             <li>type: {{ props.data.data_type }}</li>
                             <!-- <li>orbit_type: {{ props.satellites.orbit_type }} </li>
                             <li>launch date: {{ formatYear(props.satellites.launch_date) }}</li> -->
