@@ -14,7 +14,7 @@
    
     import Navbar from './components/Navbar.vue';
     import LandingPage from './components/LandingPage.vue';
-    import MainContainer from './components/MainContainer.vue';
+    import SatContainer from './components/Satellites/SatContainer.vue';
     import {ref, onMounted} from 'vue';
 
     const URL = 'http://127.0.0.1:5000'
@@ -66,8 +66,10 @@
     <div>
         <Navbar />
         <LandingPage />       
-        <MainContainer v-if="sats" :satellites="sats"/>
-        <p v-else>Loading . . . </p>
+        <div v-if="sats && data && regions">
+            <router-view :satellites="sats" :data="data" :regions="regions" />
+        </div>        
+        <p v-else>Loading...</p>
     </div>
 
 </template>

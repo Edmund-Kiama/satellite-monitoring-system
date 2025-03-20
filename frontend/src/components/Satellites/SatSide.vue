@@ -54,7 +54,7 @@
                 </div>   
                 
                 <div class="sat-results">
-                    <h3>Satellites(2)</h3>
+                    <h3>Satellites ({{ satellites.length }})</h3>
                     <ul>
                         <li v-for="sat in props.satellites" :key="sat.id" @click="selectSatellite(sat)">
                             <div>
