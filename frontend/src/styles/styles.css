@@ -57,10 +57,12 @@ nav ul li a{
     height: 70vh;
     padding: 0.5em;
     padding-bottom: 1em;
-    background-image: url(https://i.pinimg.com/736x/79/8a/c8/798ac8b77938674476c56844861f740b.jpg);
+    background: rgba(0, 0, 0, 0.15) 
+                url(https://i.pinimg.com/736x/d9/04/a5/d904a5e15ad9da1d2c9cae0e00348db7.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-blend-mode: multiply;
     color: aliceblue;
 }
 .landing-page h1 {
