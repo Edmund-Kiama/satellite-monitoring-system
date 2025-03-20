@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory} from 'vue-router'
 import SatContainer from './components/Satellites/SatContainer.vue'
 import DataContainer from './components/SatellitesData/DataContainer.vue'
+import RegContainer from './components/Regions/RegContainer.vue';
 
 const routes = [
     {path: '/', component: SatContainer},
-    {path: '/satellites-data', component: DataContainer}
+    {path: '/satellites-data', component: DataContainer},
+    {path: '/regions', component: RegContainer}
 ]
 
 const router = createRouter({

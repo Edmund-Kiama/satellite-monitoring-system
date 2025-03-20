@@ -14,7 +14,6 @@
    
     import Navbar from './components/Navbar.vue';
     import LandingPage from './components/LandingPage.vue';
-    import SatContainer from './components/Satellites/SatContainer.vue';
     import {ref, onMounted} from 'vue';
 
     const URL = 'http://127.0.0.1:5000'

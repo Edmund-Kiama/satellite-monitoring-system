@@ -2,7 +2,7 @@
     import { defineProps } from 'vue';
 
     const props = defineProps({
-        satellites: Object
+        satellite: Object
     })
 
     const formatYear = (dateString) => {
@@ -13,34 +13,34 @@
 <template>
     <div class="sat-main">
                 <div>
-                    <img :src="props.satellites.image_url" alt="satellite-image">
+                    <img :src="props.satellite.image_url" alt="satellite-image">
                 </div>
                 
                 <div class="main-detail-ui">
                     <div class="text-detail">
-                        <h3>{{ props.satellites.name}}</h3>
+                        <h3>{{ props.satellite.name}}</h3>
                         <ul>
-                            <li>type: {{ props.satellites.type }}</li>
-                            <li>orbit_type: {{ props.satellites.orbit_type }} </li>
-                            <li>launch date: {{ formatYear(props.satellites.launch_date) }}</li>
+                            <li>type: {{ props.satellite.type }}</li>
+                            <li>orbit_type: {{ props.satellite.orbit_type }} </li>
+                            <li>launch date: {{ formatYear(props.satellite.launch_date) }}</li>
                         </ul>
                     </div>
                     <div class="block-detail">
                         <div>
                             <p>Altitude</p>
-                            <p>{{ props.satellites.altitude }}</p>
+                            <p>{{ props.satellite.altitude }}</p>
                         </div> 
                         <div>
                             <p>Speed</p>
-                            <p>{{ props.satellites.speed }}</p>
+                            <p>{{ props.satellite.speed }}</p>
                         </div>    
                         <div>
                             <p>Country</p>
-                            <p>{{ props.satellites.country}}</p>
+                            <p>{{ props.satellite.country}}</p>
                         </div>  
                         <div>
                             <p>Status</p>
-                            <p>{{ props.satellites.status }}</p>
+                            <p>{{ props.satellite.status }}</p>
                         </div>           
                     </div>
                 </div>
