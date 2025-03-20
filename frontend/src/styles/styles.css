@@ -107,6 +107,9 @@ nav ul li a{
     padding-top: 0.5em;
     padding-bottom: 0.3em;   
 }
+.sat-side .filter #sat-type {
+    margin-bottom: 1em;
+}
 .sat-side .filter .status,
 .sat-side .filter .altitude{
     padding-top: 1em;

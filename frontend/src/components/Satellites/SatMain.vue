@@ -20,9 +20,9 @@
                     <div class="text-detail">
                         <h3>{{ props.satellite.name}}</h3>
                         <ul>
-                            <li>type: {{ props.satellite.type }}</li>
-                            <li>orbit_type: {{ props.satellite.orbit_type }} </li>
-                            <li>launch date: {{ formatYear(props.satellite.launch_date) }}</li>
+                            <li>Type: {{ props.satellite.type }}</li>
+                            <li>Orbit Type: {{ props.satellite.orbit_type }} </li>
+                            <li>Launch Year: {{ formatYear(props.satellite.launch_date) }}</li>
                         </ul>
                     </div>
                     <div class="block-detail">
