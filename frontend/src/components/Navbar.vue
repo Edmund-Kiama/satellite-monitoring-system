@@ -64,15 +64,23 @@
 </script>
 
 <template>
+
     <div class="navbar">
+
         <img src="../public/assests/satellite.png" alt="sat-logo">
+
         <nav>
             <ul>
                 <li><a href="#landing-page">Home</a></li>
+
                 <li><a @click="navigate2Sat">Satellites</a></li>
+
                 <li><a @click="navigate2SatData">SatellitesData</a></li>
+                
                 <li><a @click="navigate2SatRegion">Regions</a></li>
             </ul>
         </nav>
+
     </div>
+
 </template>

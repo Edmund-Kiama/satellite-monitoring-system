@@ -147,25 +147,32 @@
 
 <template>
     <div class="sat-side">
+
                 <div class="search-name">
+
                     <input 
                         type="text" 
                         placeholder="Search satellites"
                         v-model="search"
                         @input="handleSearch"
                     >
+
                 </div>
 
-                <div class="filter">
+                <div class="filter"> 
+
                     <h3>Filter</h3>
 
                     <p class="sat-type">Satellite Type</p>
+
                     <select name="satellite-type" id="sat-type" v-model="selected">
                         <option value="">Choose a type</option>
                         <option v-for="type in selectOption" :key="type" :value="type">{{ type }}</option>
                     </select>
 
+
                     <p class="sat-type">Satellite Country</p>
+                    
                     <select name="satellite-type" id="sat-type" v-model="selectedCountry">
                         <option value="">Choose a country</option>
                         <option v-for="country in countryOption" :key="country" :value="country">{{ country }}</option>
@@ -173,46 +180,68 @@
                     
 
                     <p class="status">Status</p>
+
                     <div class="checkbox">
+
                         <label for="none" class="none">
                             <input type="radio" id="none" value="" v-model="selectedStatus">
                         </label>    
+
                         <label for="active" class="active" v-for="stat in statusOption" :key="stat" >
                             <input type="radio" :id="stat" :value="stat" v-model="selectedStatus">
                             {{ stat }}
                         </label>
+
                     </div>    
                     
+
                     <p class="status">Orbit Type</p>
+
                     <div class="checkbox">
+                        
                         <label for="none" class="none">
                             <input type="radio" id="none" value="" v-model="selectedOrbit">
-                        </label>                           
+                        </label>    
+
                         <label for="active" class="active"  v-for="orbit in orbitOption" :key="orbit" >
                             <input type="radio" :id="orbit" :value="orbit" v-model="selectedOrbit">
                             {{ orbit }}
                         </label>
+
                     </div> 
 
-                    <div class="reset">
+                    <div class="reset"> 
+
                         <button @click="handleReset">Reset</button>
+
                     </div>
                 </div>   
                 
                 <div class="sat-results">
+
                     <h3>Satellites ({{  searchList.length }})</h3>
+
                     <ul v-if="searchList.length > 0">
+
                         <li v-for="sat in searchList" :key="sat.id" @click="selectSatellite(sat)">
+
                             <div>
                                 <h4>{{ sat.name }}</h4>
                                 <p>{{ sat.country }} | {{ formatYear(sat.launch_date) }}</p>
                             </div>
+
                         </li>
+                        
                     </ul>
+
                     <ul v-else>
+
                         <li>No Satellites Found</li>
+
                     </ul>
+
                 </div>
-                
+
             </div>
+
 </template>

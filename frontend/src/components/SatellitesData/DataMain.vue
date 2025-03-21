@@ -1,55 +1,72 @@
 <script setup>
-    import { defineProps } from 'vue';
+    import { defineProps, computed } from 'vue';
 
     const props = defineProps({
-        data: Object
+        data: Object,
+        satellites: Array
     })
 
     const formatYear = (dateString) => {
     return new Date(dateString).getFullYear(); 
-    };
+    }
+
+    let satOption = computed(() => {
+        if(!props.data || !props.satellites) {
+            return null
+        }
+
+        let sat = props.satellites.find(sat => sat.id == props.data.sat_id)
+        
+        return sat.image_url
+    })
+
 </script>
 
 <template>
     <div class="sat-main">
-                <!-- <div>
-                    <img :src="props.satellites.image_url" alt="satellite-image">
-                </div> -->
+                <div>
+                    <img :src="satOption" alt="satellite-image">
+                </div>
                 
                 <div class="main-detail-ui">
+
                     <div class="text-detail">
+
                         <h3>{{ props.data.data_value}}</h3>
+
                         <ul>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <li>type: {{ props.data.data_type }}</li>
-                            <!-- <li>orbit_type: {{ props.satellites.orbit_type }} </li>
-                            <li>launch date: {{ formatYear(props.satellites.launch_date) }}</li> -->
+                            <li>Data Type: <em> {{ props.data.data_type }} : {{ props.data.data_value }} </em></li>
+
+                            <li>Source: {{ props.data.source }}</li>
+
+                            <li>Satellite: {{  }}</li>
+
+                            <li>Date Recorded: {{ formatYear(props.data.date_recorded) }}</li>
                         </ul>
+
                     </div>
+
                     <div class="block-detail">
-                        <!-- <div>
-                            <p>Altitude</p>
-                            <p>{{ props.satellites.altitude }}</p>
+
+                        <div>
+                            <p>Value</p>
+                            <p>{{ props.data.data_value }}</p>
                         </div> 
+
                         <div>
-                            <p>Speed</p>
-                            <p>{{ props.satellites.speed }}</p>
-                        </div>    
+                            <p>Accuracy</p>
+                            <p>{{ props.data.data_accuracy }}</p>
+                        </div> 
+
                         <div>
-                            <p>Country</p>
-                            <p>{{ props.satellites.country}}</p>
-                        </div>  
-                        <div>
-                            <p>Status</p>
-                            <p>{{ props.satellites.status }}</p>
-                        </div>            -->
+                            <p>Units</p>
+                            <p>{{ props.data.measurement_unit }}</p>
+                        </div> 
+                                 
                     </div>
+
                 </div>
+
             </div>
+            
 </template>
