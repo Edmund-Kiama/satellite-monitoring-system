@@ -88,8 +88,8 @@
         let dataSatId = []
 
         props.data.forEach(data => {
-            let sourceExist = dataSatId.includes(data.sat_id)
-            if (!sourceExist) {
+            let satExist = dataSatId.includes(data.sat_id)
+            if (!satExist) {
                 dataSatId.push(data.sat_id)
             }
         })
@@ -143,7 +143,7 @@
 
                     <p class="sat-type">Data Source</p>
 
-                    <select name="data-type" id="data-type" v-model="selectedSource">
+                    <select name="data-type" id="sat-type" v-model="selectedSource">
                         <option value="">Choose a source</option>
                         <option v-for="source in sourceOption" :key="source" :value="source">{{ source }}</option>
                     </select>
@@ -151,13 +151,13 @@
 
                     <p class="sat-type">Satellite Used</p>
 
-                    <select name="data-type" id="data-type" v-model="selectedSat">
+                    <select name="sat-type" id="sat-type" v-model="selectedSat">
                         <option value="">Choose a satellite</option>
                         <option v-for="sat in satOption" :key="sat.id" :value="sat.id">{{ sat.name }}</option>
                     </select>
                     
 
-                    <p class="status">Choose in terms of Obit</p>
+                    <p class="status">Choose in terms of Orbit</p>
 
                     <div class="checkbox">
 
@@ -173,9 +173,7 @@
                     </div>   
                     
                     <div class="reset">
-
                         <button @click="handleReset">Reset</button>
-
                     </div>
 
                 </div>   

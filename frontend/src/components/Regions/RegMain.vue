@@ -1,26 +1,45 @@
 <script setup>
-    import { defineProps } from 'vue';
+    import { defineProps, computed } from 'vue';
 
     const props = defineProps({
-        region: Object
+        region: Object,
+        satellites: Array
     })
+
+    let satOption = computed(() => {
+        if(!props.region || !props.satellites) {
+            return null
+        }
+
+        let sat = props.satellites.find(sat => sat.id == props.region.sat_id)
+        
+        return sat.image_url
+    })
+
 </script>
 
 <template>
     <div class="sat-main">
-                <!-- <div>
-                    <img :src="props.satellites.image_url" alt="satellite-image">
-                </div> -->
+                <div>
+                    <img :src="satOption" alt="satellite-image">
+                </div>
                 
-                <div class="main-detail-ui">
+                <div class="main-detail-ui"> 
+
                     <div class="text-detail">
+
                         <h3>{{ props.region.name}}</h3>
+
                         <ul>
                             <li>latitude: {{ props.region.latitude }}</li>
+
                             <li>longitude: {{ props.region.longitude }} </li>
+
                             <li>primary focus: {{ props.region.primary_focus }}</li>
                         </ul>
+
                     </div>
+
                     <div class="block-detail">
                         <!-- <div>
                             <p>Altitude</p>
