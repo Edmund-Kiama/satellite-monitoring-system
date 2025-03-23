@@ -22,7 +22,8 @@
     <div>
     <div class="sat-main" v-if="props.region">
         <div>
-            <img :src="satOption" alt="satellite-image">
+            <img :src="satOption" alt="satellite-image" v-if="satOption">
+            <img src="https://i.pinimg.com/originals/c5/eb/05/c5eb05561c26dcd11228ed33cd3e707c.gif" alt="satellite-image" v-else>
         </div>
         
         <div class="main-detail-ui"> 
@@ -56,7 +57,7 @@
         </div>
     </div>
     <div class="sat-main" v-else>
-            <img src="https://i.pinimg.com/originals/f4/ed/7a/f4ed7a58996957266401435585604881.gif" alt="loading...">
+            <img src="https://i.pinimg.com/originals/d8/75/32/d87532bf817b54ec2743c208ccfe5a4c.gif" alt="loading...">
         </div>
     </div>
 </template>

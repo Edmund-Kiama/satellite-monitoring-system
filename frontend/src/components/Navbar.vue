@@ -67,7 +67,7 @@
 
     <div class="navbar">
 
-        <img src="https://cdn-icons-png.flaticon.com/128/129/129542.png" alt="sat-logo">
+        <img src="https://cdn-icons-png.flaticon.com/128/6186/6186680.png" alt="sat-logo">
 
         <nav>
             <ul>
