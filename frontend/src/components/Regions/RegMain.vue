@@ -19,45 +19,44 @@
 </script>
 
 <template>
-    <div class="sat-main">
-                <div>
-                    <img :src="satOption" alt="satellite-image">
-                </div>
-                
-                <div class="main-detail-ui"> 
+    <div>
+    <div class="sat-main" v-if="props.region">
+        <div>
+            <img :src="satOption" alt="satellite-image">
+        </div>
+        
+        <div class="main-detail-ui"> 
 
-                    <div class="text-detail">
+            <div class="text-detail">
 
-                        <h3>{{ props.region.name}}</h3>
+                <h3>{{ props.region.name}}</h3>
 
-                        <ul>
-                            <li>latitude: {{ props.region.latitude }}</li>
+                <ul>
+                    <li>Climate: {{ props.region.climate_type }}</li>
 
-                            <li>longitude: {{ props.region.longitude }} </li>
+                    <li>Area: {{ props.region.area }} </li>
 
-                            <li>primary focus: {{ props.region.primary_focus }}</li>
-                        </ul>
+                    <li>primary focus: {{ props.region.primary_focus }}</li>
+                </ul>
 
-                    </div>
-
-                    <div class="block-detail">
-                        <!-- <div>
-                            <p>Altitude</p>
-                            <p>{{ props.satellites.altitude }}</p>
-                        </div> 
-                        <div>
-                            <p>Speed</p>
-                            <p>{{ props.satellites.speed }}</p>
-                        </div>    
-                        <div>
-                            <p>Country</p>
-                            <p>{{ props.satellites.country}}</p>
-                        </div>  
-                        <div>
-                            <p>Status</p>
-                            <p>{{ props.satellites.status }}</p>
-                        </div>            -->
-                    </div>
-                </div>
             </div>
+
+            <div class="block-detail">
+                <div>
+                    <p>Latitude</p>
+                    <p>{{ props.region.latitude }}</p>
+                </div> 
+
+                <div>
+                    <p>Longitude</p>
+                    <p>{{ props.region.longitude }}</p>
+                </div>    
+                    
+            </div>
+        </div>
+    </div>
+    <div class="sat-main" v-else>
+            <img src="https://i.pinimg.com/originals/f4/ed/7a/f4ed7a58996957266401435585604881.gif" alt="loading...">
+        </div>
+    </div>
 </template>

@@ -12,54 +12,59 @@
 </script>
 
 <template>
-    <div class="sat-main">
+    <div>
+        <div class="sat-main" v-if="props.satellite">
 
-                <div>
-                    <img :src="props.satellite.image_url" alt="satellite-image">
+            <div>
+                <img :src="props.satellite.image_url" alt="satellite-image">
+            </div>
+            
+            <div class="main-detail-ui">
+
+                <div class="text-detail">
+
+                    <h3>{{ props.satellite.name}}</h3>
+
+                    <ul>
+                        <li>Type: {{ props.satellite.type }}</li>
+
+                        <li>Orbit Type: {{ props.satellite.orbit_type }} </li>
+
+                        <li>Launch Year: {{ formatYear(props.satellite.launch_date) }}</li>
+
+                    </ul>
+
                 </div>
-                
-                <div class="main-detail-ui">
 
-                    <div class="text-detail">
+                <div class="block-detail">
 
-                        <h3>{{ props.satellite.name}}</h3>
+                    <div>
+                        <p>Altitude</p>
+                        <p>{{ props.satellite.altitude }}</p>
+                    </div> 
 
-                        <ul>
-                            <li>Type: {{ props.satellite.type }}</li>
+                    <div>
+                        <p>Speed</p>
+                        <p>{{ props.satellite.speed }}</p>
+                    </div>    
 
-                            <li>Orbit Type: {{ props.satellite.orbit_type }} </li>
-
-                            <li>Launch Year: {{ formatYear(props.satellite.launch_date) }}</li>
-
-                        </ul>
-
-                    </div>
-
-                    <div class="block-detail">
-
-                        <div>
-                            <p>Altitude</p>
-                            <p>{{ props.satellite.altitude }}</p>
-                        </div> 
-
-                        <div>
-                            <p>Speed</p>
-                            <p>{{ props.satellite.speed }}</p>
-                        </div>    
-
-                        <div>
-                            <p>Country</p>
-                            <p>{{ props.satellite.country}}</p>
-                        </div>  
-                        
-                        <div>
-                            <p>Status</p>
-                            <p>{{ props.satellite.status }}</p>
-                        </div>      
-
-                    </div>
+                    <div>
+                        <p>Country</p>
+                        <p>{{ props.satellite.country}}</p>
+                    </div>  
+                    
+                    <div>
+                        <p>Status</p>
+                        <p>{{ props.satellite.status }}</p>
+                    </div>      
 
                 </div>
 
             </div>
+
+        </div>
+        <div class="sat-main" v-else>
+            <img src="https://i.pinimg.com/originals/f4/ed/7a/f4ed7a58996957266401435585604881.gif" alt="loading...">
+        </div>
+    </div>
 </template>

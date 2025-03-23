@@ -184,7 +184,7 @@
 
                     <ul v-if="searchList.length > 0">
                         
-                        <li v-for="dat in searchList" :key="dat.id" @click="selectData(dat)">
+                        <li v-for="dat in searchList" :key="dat.id" @click="selectData(dat)" class="res">
                             
                             <div>
                                 <h4>{{ dat.data_type }}</h4>

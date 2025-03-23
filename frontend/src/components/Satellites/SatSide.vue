@@ -223,7 +223,7 @@
 
                     <ul v-if="searchList.length > 0">
 
-                        <li v-for="sat in searchList" :key="sat.id" @click="selectSatellite(sat)">
+                        <li v-for="sat in searchList" :key="sat.id" @click="selectSatellite(sat)" class="res">
 
                             <div>
                                 <h4>{{ sat.name }}</h4>

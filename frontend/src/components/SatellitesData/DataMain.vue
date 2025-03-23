@@ -23,50 +23,55 @@
 </script>
 
 <template>
-    <div class="sat-main">
-                <div>
-                    <img :src="satOption" alt="satellite-image">
+    <div>
+        <div class="sat-main" v-if="props.data">
+            <div>
+                <img :src="satOption" alt="satellite-image">
+            </div>
+            
+            <div class="main-detail-ui">
+
+                <div class="text-detail">
+
+                    <h3>{{ props.data.data_value}}</h3>
+
+                    <ul>
+                        <li>Data Type: <em> {{ props.data.data_type }} : {{ props.data.data_value }} </em></li>
+
+                        <li>Source: {{ props.data.source }}</li>
+
+                        <li>Satellite: {{  }}</li>
+
+                        <li>Date Recorded: {{ formatYear(props.data.date_recorded) }}</li>
+                    </ul>
+
                 </div>
-                
-                <div class="main-detail-ui">
 
-                    <div class="text-detail">
+                <div class="block-detail">
 
-                        <h3>{{ props.data.data_value}}</h3>
+                    <div>
+                        <p>Value</p>
+                        <p>{{ props.data.data_value }}</p>
+                    </div> 
 
-                        <ul>
-                            <li>Data Type: <em> {{ props.data.data_type }} : {{ props.data.data_value }} </em></li>
+                    <div>
+                        <p>Accuracy</p>
+                        <p>{{ props.data.data_accuracy }}</p>
+                    </div> 
 
-                            <li>Source: {{ props.data.source }}</li>
-
-                            <li>Satellite: {{  }}</li>
-
-                            <li>Date Recorded: {{ formatYear(props.data.date_recorded) }}</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="block-detail">
-
-                        <div>
-                            <p>Value</p>
-                            <p>{{ props.data.data_value }}</p>
-                        </div> 
-
-                        <div>
-                            <p>Accuracy</p>
-                            <p>{{ props.data.data_accuracy }}</p>
-                        </div> 
-
-                        <div>
-                            <p>Units</p>
-                            <p>{{ props.data.measurement_unit }}</p>
-                        </div> 
-                                 
-                    </div>
-
+                    <div>
+                        <p>Units</p>
+                        <p>{{ props.data.measurement_unit }}</p>
+                    </div> 
+                                
                 </div>
 
             </div>
+        </div>
+
+        <div class="sat-main" v-else>
+            <img src="https://i.pinimg.com/originals/f4/ed/7a/f4ed7a58996957266401435585604881.gif" alt="loading...">
+        </div>
+    </div>
             
 </template>

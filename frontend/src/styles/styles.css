@@ -1,8 +1,10 @@
 *{
     margin: 0;
+    color: white;
 }
 body {
     font-size: 16px;
+    background: linear-gradient(to bottom,  #000000, #101725);
   }
 @media (max-width: 768px) {
 body {
@@ -17,12 +19,12 @@ html {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    border-bottom: 1px solid #111111;
     align-items: center;
     padding: 0.5em;
     position: sticky;
     top: 0;
-    background-color: #d6d6d6ec;
+    background-color: #000000;
+    color: #5d63d0;
     z-index: 100;
 }
 .navbar img{
@@ -46,6 +48,13 @@ nav ul {
 nav ul li a{
     text-decoration: none;
     font-size: 1.25em;
+    color: #5d63d0;
+    cursor: pointer;
+    transition: 0.25s ease-in;
+}
+nav ul li a:hover {
+    transform: scale(1.05);
+    font-size: 1.3em;
 }
 /*idea:  background img for landing page */
 .landing-page{
@@ -57,13 +66,14 @@ nav ul li a{
     height: 70vh;
     padding: 0.5em;
     padding-bottom: 1em;
-    background: rgba(0, 0, 0, 0.15) 
-                url(https://i.pinimg.com/736x/d9/04/a5/d904a5e15ad9da1d2c9cae0e00348db7.jpg);
+    background: rgba(0, 0, 0, 0.5) 
+                url(https://i.pinimg.com/originals/91/16/f7/9116f7fd184238ada99fdff9e2f2e3ac.gif);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-blend-mode: multiply;
     color: aliceblue;
+    height: 100vh;
 }
 .landing-page h1 {
     padding: 1em;   
@@ -87,23 +97,79 @@ nav ul li a{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    border-right: 1px solid #111111;
+    border-right: 1px solid #101725;
     float: left;
+    background:  #00000097;
 }
-
+.sat-side h3{
+    color: #EDEDED;
+}
+.sat-side p {
+    color: #d1d1d1;
+}
+.sat-side .search-name input{
+    background: #101725;
+    border: 1px solid #5d63d0;
+    border-radius: 0.3em ;
+    padding: 0.5em;
+}
+.sat-side  .filter select {
+    background: #101725;
+    border: 1px solid #5d63d0;
+    border-radius: 0.3em ;
+    padding: 0.5em;
+    color: #959595;
+    cursor: pointer;
+}
+.sat-side .checkbox label{
+    color: #959595;
+    cursor: pointer;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+}
+.sat-side .checkbox label input[type="radio"] {
+    appearance: none;
+    width: 1em;
+    height: 1em;
+    border: 1px solid #5d63d0;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+.sat-side .checkbox label input[type="radio"]:checked {
+    background-color: #5d63d0;
+    border-color: #5d63d0;
+}
+.sat-side .reset button {
+    background-color: #101725;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    border: 1px solid #5d63d0;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.sat-side .reset button:hover{
+    background-color: #5d63d0;
+    border: 1px solid #101725;
+    color: #000000;
+    font-weight: bold;
+}
 .sat-side .search-name{
     padding-bottom: 1.5em;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 1.5em;
-    border-bottom: 1px solid #111111;
+    border-bottom: 1px solid #101725;
 }
 .sat-side .filter{
     padding-top: 1.5em;
     padding-bottom: 1.5em;
     padding-left: 1em;
     padding-right: 1em;
-    border-bottom: 1px solid #111111;
+    border-bottom: 1px solid #101725;
 }
 .sat-side .filter .sat-type{
     padding-top: 0.5em;
@@ -143,6 +209,7 @@ nav ul li a{
 }
 .sat-results h3{
     padding: 1em;
+    color: #EDEDED;
 }
 .sat-results ul{
     padding-top: 1em;
@@ -155,6 +222,20 @@ nav ul li a{
 }
 .sat-results ul li p{
     font-size: smaller;
+    color: #d1d1d1;
+}
+.sat-results ul .res {
+    background-color: #101725;
+    margin-bottom: 1em;
+    margin-right: 0.5em;
+    padding: 0.5em;
+    width: 10em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.sat-results ul .res:hover {
+    background-color: #5d63d0;
 }
 
 @media (max-width: 768px){

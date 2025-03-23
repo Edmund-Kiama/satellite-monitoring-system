@@ -139,7 +139,7 @@
                     <h3>Regions ({{ searchList.length }})</h3>
 
                     <ul v-if="searchList.length > 0">
-                        <li v-for="reg in searchList" :key="reg.id" @click="selectRegion(reg)">
+                        <li v-for="reg in searchList" :key="reg.id" @click="selectRegion(reg)" class="res">
 
                             <div>
                                 <h4>{{ reg.name }}</h4>
