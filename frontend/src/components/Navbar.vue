@@ -61,6 +61,10 @@
         }
     }
 
+    const selectedNavClass = (path) => {
+        return route.path === path ? "selected" : ""
+    }
+
 </script>
 
 <template>
@@ -73,11 +77,11 @@
             <ul>
                 <li><a href="#landing-page">Home</a></li>
 
-                <li><a @click="navigate2Sat">Satellites</a></li>
+                <li><a :class="selectedNavClass('/')"  @click="navigate2Sat">Satellites</a></li>
 
-                <li><a @click="navigate2SatData">SatellitesData</a></li>
+                <li><a :class="selectedNavClass('/satellites-data')" @click="navigate2SatData">SatellitesData</a></li>
                 
-                <li><a @click="navigate2SatRegion">Regions</a></li>
+                <li><a :class="selectedNavClass('/regions')" @click="navigate2SatRegion">Regions</a></li>
             </ul>
         </nav>
 

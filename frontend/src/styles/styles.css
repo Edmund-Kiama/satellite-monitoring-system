@@ -5,11 +5,30 @@
 body {
     font-size: 16px;
     background: linear-gradient(to bottom,  #000000, #101725);
+    margin: 0;
   }
 @media (max-width: 768px) {
-body {
-    font-size: 13px;
+    body {
+        font-size: 13px;
+    }
 }
+@keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+.sat-main img, .sat-main .text-detail h3, .sat-main .text-detail ul li,
+ .sat-main .block-detail div, .search-name, .filter h3, .filter p,
+ .filter select, .filter label, .sat-results h3, .sat-results ul li  {
+animation: appear  0.6s ease-out forwards;
+animation-timeline: view();
+animation-range: entry 0% cover 15%;
+opacity: 0;
 }
 html {
     scroll-behavior: smooth;
@@ -19,7 +38,6 @@ html {
 }
 ::-webkit-scrollbar-track {
     background-color: #000000;
-    border-radius: 0.3em;
 }
 ::-webkit-scrollbar-thumb {
 background: #101725; 
@@ -44,6 +62,10 @@ background: #5d63d081;
 }
 .navbar img{
     height: 1.75em;
+}
+.selected {
+    color: #868cff;
+    font-weight: bolder;
 }
 nav ul {
     display: flex;
@@ -78,7 +100,7 @@ nav ul li a:hover {
     flex-direction: column;
     justify-content:end;
     border-bottom: 1px solid #111111;
-    height: 70vh;
+    height: 93vh;
     padding: 0.5em;
     padding-bottom: 1em;
     background: rgba(0, 0, 0, 0.5) 
@@ -88,7 +110,6 @@ nav ul li a:hover {
     background-repeat: no-repeat;
     background-blend-mode: multiply;
     color: aliceblue;
-    height: 100vh;
 }
 .landing-page h1 {
     padding: 1em;   
@@ -351,10 +372,13 @@ nav ul li a:hover {
     float: right;
 }
 .sat-main{
-    padding-top: 0.2em;
+    margin-top: 0.2em;
+    position: sticky;
+    top: 0;
 }
 .sat-main img{
-    max-width: 100%;
+    width: 100%;
+    max-width: 800px;
     height: auto;
 }
 .sat-main .main-detail-ui{
@@ -389,17 +413,16 @@ nav ul li a:hover {
     gap: 1em;
 }
 .sat-main .main-detail-ui .block-detail div {
-    background-color: #101725;
+    background-color: #1c263b;
     border-radius: 0.3em;
     margin-top: 1em;
     padding: 1em;
-}
-.sat-main .main-detail-ui .block-detail div p {
     color: #d1d1d1;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 .sat-main .main-detail-ui .block-detail div:hover {
     color: #EDEDED;
+    background-color: #5d63d0;
 }
 .sat-main .sat-img {
     display: flex;
@@ -416,4 +439,5 @@ nav ul li a:hover {
     display: block;
     border-radius: 0.3em;
 }
+
 

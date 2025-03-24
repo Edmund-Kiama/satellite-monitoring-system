@@ -16,7 +16,7 @@
     import LandingPage from './components/LandingPage.vue';
     import {ref, onMounted} from 'vue';
 
-    const URL = 'http://127.0.0.1:5000'
+    const URL = 'http://localhost:5555'
     const satelliteURL = '/satellites'
     const dataURL = '/satellites-data'
     const regionURL = '/regions'
