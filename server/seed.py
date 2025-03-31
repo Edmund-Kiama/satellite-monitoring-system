@@ -1,21 +1,11 @@
-from mydb.models import db,Satellite, SatelliteData, Region
+from models import db,Satellite, SatelliteData, Region
 from datetime import date
 from flask import Flask
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///monitoring.db' 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
-
-db.init_app(app)
+from app import app
 
 def add_seed():
     with app.app_context():
         db.create_all()
-        # sat
-        # db.session.query(Satellite).delete()
-        # db.session.query(SatelliteData).delete()
-        # db.session.query(Region).delete()
-        # db.session.commit()
         
         landsat = Satellite(
             name = "Landsat-9",
@@ -503,10 +493,10 @@ def add_seed():
         # Inactive Satellite Data
 
         inactive_satellite_data = SatelliteData(
-            sat_id = 10,  # Example: Hubble Space Telescope (Inactive)
+            sat_id = 10,  # Hubble Space Telescope 
             data_type = "Cosmic Radiation",
             data_value = "2.5 mSv",
-            date_recorded = date(2021, 4, 30),  # Last recording before inactivity
+            date_recorded = date(2021, 4, 30),  
             data_accuracy = "± 0.2 mSv",
             measurement_unit = "mSv",
             source = "Radiation sensor (Hubble)",
@@ -514,10 +504,10 @@ def add_seed():
         )
 
         inactive_earth_observation = SatelliteData(
-            sat_id = 15,  # Example: Envisat (Inactive)
+            sat_id = 15,  #  Envisat 
             data_type = "Atmospheric Carbon Dioxide",
             data_value = "380 ppm",
-            date_recorded = date(2012, 4, 8),  # Last recording before inactivity
+            date_recorded = date(2012, 4, 8),  
             data_accuracy = "± 5 ppm",
             measurement_unit = "ppm",
             source = "Infrared spectrometer",
@@ -525,10 +515,10 @@ def add_seed():
         )
 
         inactive_ocean_monitoring = SatelliteData(
-            sat_id = 16,  # Example: SeaWiFS (Inactive)
+            sat_id = 16,  # SeaWiFS 
             data_type = "Ocean Chlorophyll Concentration",
             data_value = "0.12 mg/m³",
-            date_recorded = date(2010, 6, 16),  # Last recording before inactivity
+            date_recorded = date(2010, 6, 16),  
             data_accuracy = "± 0.01 mg/m³",
             measurement_unit = "mg/m³",
             source = "Ocean color sensor",

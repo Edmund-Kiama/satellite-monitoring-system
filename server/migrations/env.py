@@ -5,7 +5,7 @@ from flask import current_app
 
 from alembic import context
 from app import app
-from mydb.models import db
+from models import db
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
