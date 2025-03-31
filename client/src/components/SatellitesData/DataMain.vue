@@ -1,5 +1,5 @@
 <script setup>
-    import { defineProps, computed } from 'vue';
+    import { defineProps, computed} from 'vue';
 
     const props = defineProps({
         data: Object,
@@ -27,7 +27,7 @@
         <div class="sat-main" v-if="props.data">
             <div class="sat-img">
                 <img :src="satOption" alt="satellite-image" v-if="satOption">
-                <img src="https://i.pinimg.com/originals/c5/eb/05/c5eb05561c26dcd11228ed33cd3e707c.gif" alt="satellite-image" v-else>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/LANDSAT-9.jpg/1024px-LANDSAT-9.jpg" alt="satellite-image" v-else>
             </div>
             
             <div class="main-detail-ui">
