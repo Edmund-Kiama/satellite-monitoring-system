@@ -18,6 +18,7 @@
             <div>
                 <img :src="props.satellite.image_url" alt="satellite-image">
             </div>
+
             
             <div class="main-detail-ui">
 

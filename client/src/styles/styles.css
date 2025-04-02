@@ -433,9 +433,9 @@ nav ul li a:hover {
     margin: auto;
     text-align: center;
 }
-.sat-main .sat-img img {
+.sat-main img {
     max-width: 100%;
-    height: auto;
+    height: 50vh;
     display: block;
     border-radius: 0.3em;
 }

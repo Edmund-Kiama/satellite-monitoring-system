@@ -1,18 +1,22 @@
 from models import db,Satellite, SatelliteData, Region
 from datetime import date
-from flask import Flask
 from app import app
 
 def add_seed():
     with app.app_context():
         db.create_all()
+
+        db.session.query(Satellite).delete()
+        db.session.query(Region).delete()
+        db.session.query(SatelliteData).delete()
+        db.session.commit()
         
         landsat = Satellite(
             name = "Landsat-9",
             orbit_type = "LEO",
             status = "active",
             description = "NASA's Earth observation satellite",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/LANDSAT-9.jpg/1024px-LANDSAT-9.jpg",
+            image_url = "https://i.pinimg.com/736x/93/e3/7c/93e37cd57401088ef10bcf85570a3fbd.jpg",
             country = "USA",
             altitude = "705 km",
             speed = "7.5 km/s",
@@ -25,7 +29,7 @@ def add_seed():
             orbit_type = "GEO",
             status = "active",
             description = "NOAA's weather satellite",
-            image_url="https://www.nasa.gov/wp-content/uploads/2023/03/goesr_earth_reflection_2012.jpg?resize=1024,680",
+            image_url="https://i.pinimg.com/736x/87/60/6a/87606a24031948a65147e8a82f23e933.jpg",
             country = "USA",
             altitude = "35,786 km",
             speed = "3.07 km/s",
@@ -38,7 +42,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "active",
             description = "ESA's Earth observation satellite for land monitoring",
-            image_url = "https://sentiwiki.copernicus.eu/__attachments/1671710/image-20230517-132224.png?inst-v=4ffdc811-3c3b-4ab5-969e-474a9a1b69a6",
+            image_url = "https://i.pinimg.com/736x/e5/36/b4/e536b4f149cb8e35ecde4d0b8e256bc2.jpg",
             country = "European Union",
             altitude = "786 km",
             speed = "7.4 km/s",
@@ -51,7 +55,7 @@ def add_seed():
             orbit_type = "GEO",
             status = "active",
             description = "Japan's weather satellite for Asia-Pacific region",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Himawari89_2.jpg/1024px-Himawari89_2.jpg",
+            image_url = "https://i.pinimg.com/736x/a4/57/ee/a457ee9b0355291cab3d48cdcfee1216.jpg",
             country = "Japan",
             altitude = "35,786 km",
             speed = "3.07 km/s",
@@ -64,7 +68,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "active",
             description = "NASA's satellite for global climate and environmental research",
-            image_url = "https://www.eoportal.org/ftp/satellite-missions/t/Terra_200722/Terra_Auto37.jpeg",
+            image_url = "https://i.pinimg.com/736x/5a/0c/cb/5a0ccb238356f95d73f6d676c89f442a.jpg",
             country = "USA",
             altitude = "705 km",
             speed = "7.5 km/s",
@@ -77,7 +81,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "active",
             description = "NASA's Earth observation satellite for studying water cycles",
-            image_url = "https://earthdata.nasa.gov/s3fs-public/styles/hds_large/public/2022-05/AQUA.jpg?VersionId=Oob7cXtgOlFtFmCRIFe2XhnONGC.5inP&itok=kdsMI9DT",
+            image_url = "https://i.pinimg.com/736x/17/c5/09/17c5090003dff9ad2948b34aa601bd00.jpg",
             country = "USA",
             altitude = "705 km",
             speed = "7.5 km/s",
@@ -90,7 +94,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "active",
             description = "Italian radar satellite for Earth observation and disaster monitoring",
-            image_url = "https://www.eoportal.org/api/cms/documents/163813/3649508/COSMO_Auto32.jpeg",
+            image_url = "https://i.pinimg.com/736x/1d/74/ff/1d74ffbed369f57ef3bb3a48607b6ecf.jpg",
             country = "Italy",
             altitude = "620 km",
             speed = "7.6 km/s",
@@ -103,7 +107,7 @@ def add_seed():
             orbit_type = "GEO",
             status = "active",
             description = "India's weather and environmental monitoring satellite",
-            image_url = "https://sky-brokers.com/wp-content/uploads/2024/07/INSAT-3DS-in-orbit.jpeg",
+            image_url = "https://i.pinimg.com/736x/de/62/a7/de62a79ec508dea6ad3bd0343e75bb00.jpg",
             country = "India",
             altitude = "35,786 km",
             speed = "3.07 km/s",
@@ -112,25 +116,25 @@ def add_seed():
         )
         # Inactive Satellites
 
-        spacelab = Satellite(
-            name = "Spacelab",
-            orbit_type = "LEO",
-            status = "inactive",
-            description = "A reusable laboratory in space used by NASA and ESA for various research missions",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spacelab.jpg/800px-Spacelab.jpg",
-            country = "USA/ESA",
-            altitude = "300 km",
-            speed = "7.6 km/s",
-            launch_date = date(1983, 12, 28),
-            type = "Space laboratory"
-        )
+        # spacelab = Satellite(
+        #     name = "Spacelab",
+        #     orbit_type = "LEO",
+        #     status = "inactive",
+        #     description = "A reusable laboratory in space used by NASA and ESA for various research missions",
+        #     image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spacelab.jpg/800px-Spacelab.jpg",
+        #     country = "USA/ESA",
+        #     altitude = "300 km",
+        #     speed = "7.6 km/s",
+        #     launch_date = date(1983, 12, 28),
+        #     type = "Space laboratory"
+        # )
 
         hubble = Satellite(
             name = "Hubble Space Telescope",
             orbit_type = "LEO",
             status = "inactive",
             description = "NASA's space telescope for observing distant galaxies and stars",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Hubble_Space_Telescope_in_orbit.jpg/1024px-Hubble_Space_Telescope_in_orbit.jpg",
+            image_url = "https://i.pinimg.com/736x/01/8d/ca/018dcae42bb11b58cca0a3a74713fde0.jpg",
             country = "USA",
             altitude = "547 km",
             speed = "7.5 km/s",
@@ -143,7 +147,7 @@ def add_seed():
             orbit_type = "Lunar",
             status = "inactive",
             description = "India's first lunar exploration satellite, part of the Chandrayaan program",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Chandrayaan-1.jpg/800px-Chandrayaan-1.jpg",
+            image_url = "https://i.pinimg.com/236x/49/79/46/4979466848212c2893260abc67c7537b.jpg",
             country = "India",
             altitude = "200 km (lunar orbit)",
             speed = "1.6 km/s",
@@ -156,7 +160,7 @@ def add_seed():
             orbit_type = "Solar orbit",
             status = "inactive",
             description = "NASA's mission to collect comet dust and return samples to Earth",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Stardust-spacecraft.jpg/1024px-Stardust-spacecraft.jpg",
+            image_url = "https://i.pinimg.com/736x/b3/be/c9/b3bec9d89c42fa2e9792ee785cb680d1.jpg",
             country = "USA",
             altitude = "Varies (solar orbit)",
             speed = "13.5 km/s",
@@ -169,7 +173,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "inactive",
             description = "The second satellite launched by the United States, used for scientific experiments",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vanguard_1_01.jpg/800px-Vanguard_1_01.jpg",
+            image_url = "https://i.pinimg.com/736x/08/d9/97/08d997a62a4c00f47bc003b9a84e0c52.jpg",
             country = "USA",
             altitude = "650 km",
             speed = "8 km/s",
@@ -182,7 +186,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "inactive",
             description = "NASA's first space station used for medical, biological, and space physics research",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Skylab.jpg/800px-Skylab.jpg",
+            image_url = "https://i.pinimg.com/736x/80/a9/68/80a968a4bcc18133c8aabdcd2cb28335.jpg",
             country = "USA",
             altitude = "435 km",
             speed = "7.7 km/s",
@@ -194,7 +198,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "inactive",
             description = "A European Space Agency satellite used for Earth observation, with a focus on environmental monitoring",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Envisat.jpg/800px-Envisat.jpg",
+            image_url = "https://i.pinimg.com/736x/9e/e0/93/9ee093557796ea09f75015225f0bdc66.jpg",
             country = "European Space Agency (ESA)",
             altitude = "800 km",
             speed = "7.5 km/s",
@@ -207,7 +211,7 @@ def add_seed():
             orbit_type = "LEO",
             status = "inactive",
             description = "NASA's satellite used for monitoring the Earth's oceans and collecting oceanographic data",
-            image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/SeaWiFS.jpg/800px-SeaWiFS.jpg",
+            image_url = "https://i.pinimg.com/736x/ad/26/be/ad26be1cfe136a70602825bf42e7739e.jpg",
             country = "USA",
             altitude = "705 km",
             speed = "7.5 km/s",
@@ -216,7 +220,7 @@ def add_seed():
         )
  
 
-        db.session.add_all([landsat, geos, sentinel, himawari, terra, aqua, cosmo_sky, insat_3d, spacelab, hubble, chandrayaan_1, stardust, vanguard_1, skylab, envisat, seawifs])
+        db.session.add_all([landsat, geos, sentinel, himawari, terra, aqua, cosmo_sky, insat_3d, hubble, chandrayaan_1, stardust, vanguard_1, skylab, envisat, seawifs])
         db.session.commit()
 
         #region
