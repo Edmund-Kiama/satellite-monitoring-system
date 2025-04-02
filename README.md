@@ -18,23 +18,29 @@ This system uses two one-to-many relationships:
 ## Project Structure
 
 ```
-satellite_monitoring_Db/ ├──
-│-- migrations/
-|      ├──versions/
-|      ├──env.py
-|      ├──README
-|      ├──script.py.mako
-|--mydb/
-|      ├──models.py
-|      ├──seed.py
-|--alembic.ini
-|--Dockerfile
-|--main.py
-|--monitoring.db
-|--Pipfile
-|--Pipfile.lock
-|--README.md
-|--run.py
+satellite_monitoring_Db /──|
+                           ├── client
+                           │   ├── index.html
+                           │   ├── node_modules
+                           │   ├── package.json
+                           │   ├── package-lock.json
+                           │   ├── public
+                           │   ├── README.md
+                           │   ├── src
+                           │   └── vite.config.js
+                           ├── Dockerfile
+                           ├── Pipfile
+                           ├── Pipfile.lock
+                           ├── __pycache__
+                           │   └── app.cpython-38.pyc
+                           ├── README.md
+                           └── server
+                              ├── app.py
+                              ├── instance
+                              ├── main.py
+                              ├── migrations
+                              ├── models.py
+                              └── seed.py
 
 ```
 ## What You Can Do
