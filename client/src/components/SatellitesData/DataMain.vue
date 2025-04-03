@@ -27,7 +27,7 @@
         <div class="sat-main" v-if="props.data">
             <div class="sat-img">
                 <img :src="satOption" alt="satellite-image" v-if="satOption">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/LANDSAT-9.jpg/1024px-LANDSAT-9.jpg" alt="satellite-image" v-else>
+                <img src="https://i.pinimg.com/736x/93/e3/7c/93e37cd57401088ef10bcf85570a3fbd.jpg" alt="satellite-image" v-else>
             </div>
             
             <div class="main-detail-ui">
