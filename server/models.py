@@ -5,11 +5,13 @@ from sqlalchemy.orm import validates
 from sqlalchemy_serializer import SerializerMixin
 from flask_migrate import Migrate
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///monitoring.db' 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+# postgresql://satellite_monitoring_database_user:WEQBgsmD4Qfl9Re6YGS2y0FaoZTVRdtF@dpg-cvnuearuibrs73aesol0-a.oregon-postgres.render.com/satellite_monitoring_database
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 app.json.compact = False
 

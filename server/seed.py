@@ -1,15 +1,24 @@
 from models import db,Satellite, SatelliteData, Region
 from datetime import date
 from app import app
+from sqlalchemy import text
 
 def add_seed():
     with app.app_context():
+        print("starting seeding")
         db.create_all()
 
-        db.session.query(Satellite).delete()
-        db.session.query(Region).delete()
+        print("Starts deleting existing tables data")
+
         db.session.query(SatelliteData).delete()
+        db.session.query(Region).delete()
+        db.session.query(Satellite).delete()
         db.session.commit()
+
+        db.session.execute(text("ALTER SEQUENCE satellites_id_seq RESTART WITH 1"))
+        db.session.commit()
+
+        print("Completes deletion")
         
         landsat = Satellite(
             name = "Landsat-9",
@@ -219,13 +228,15 @@ def add_seed():
             type = "Oceanographic satellite"
         )
  
-
+        print("Starts adding satellites")
         db.session.add_all([landsat, geos, sentinel, himawari, terra, aqua, cosmo_sky, insat_3d, hubble, chandrayaan_1, stardust, vanguard_1, skylab, envisat, seawifs])
         db.session.commit()
+        print("Completes Satellites addition")
+        print(f"landsat: {landsat.id}")
 
         #region
         amazon = Region(
-            sat_id = 1,  # landsat_id
+            sat_id = landsat.id,  # landsat_id
             name = "Amazon Rainforest",
             latitude = -3.4653,
             longitude = -62.2159,
@@ -235,7 +246,7 @@ def add_seed():
         )
 
         sahara = Region(
-            sat_id = 1,  # landsat_id
+            sat_id = landsat.id,  # landsat_id
             name = "Sahara Desert",
             latitude = 23.4162,
             longitude = 25.6628,
@@ -245,7 +256,7 @@ def add_seed():
         )
 
         east_coast = Region(
-            sat_id = 2,  # geos_id
+            sat_id = geos.id,  # geos_id
             name = "East Coast(US)",
             latitude = 35.2271,
             longitude = -80.8431,
@@ -255,7 +266,7 @@ def add_seed():
         )
 
         mexico_gulf = Region(
-            sat_id = 2,  # geos_id
+            sat_id = geos.id,  # geos_id
             name = "Gulf of Mexico",
             latitude = 25.00,
             longitude = -90.00,
@@ -265,7 +276,7 @@ def add_seed():
         )
 
         great_barrier_reef = Region(
-            sat_id = 3,  # sentinel_id
+            sat_id = sentinel.id,  # sentinel_id
             name = "Great Barrier Reef",
             latitude = -18.2871,
             longitude = 147.6992,
@@ -275,7 +286,7 @@ def add_seed():
         )
 
         himalayas = Region(
-            sat_id = 3,  # sentinel_id
+            sat_id = sentinel.id,  # sentinel_id
             name = "Himalayas",
             latitude = 27.9881,
             longitude = 86.9250,
@@ -285,7 +296,7 @@ def add_seed():
         )
 
         philippine_sea = Region(
-            sat_id = 4,  # himawari_id
+            sat_id = himawari.id,  # himawari_id
             name = "Philippine Sea",
             latitude = 15.0,
             longitude = 130.0,
@@ -295,7 +306,7 @@ def add_seed():
         )
 
         antarctica = Region(
-            sat_id = 5,  # terra_id
+            sat_id = terra.id,  # terra_id
             name = "Antarctica",
             latitude = -75.2500,
             longitude = -0.0714,
@@ -305,7 +316,7 @@ def add_seed():
         )
 
         greenland = Region(
-            sat_id = 6,  # aqua_id
+            sat_id = aqua.id,  # aqua_id
             name = "Greenland Ice Sheet",
             latitude = 71.7069,
             longitude = -42.6043,
@@ -315,7 +326,7 @@ def add_seed():
         )
 
         andes_mountains = Region(
-            sat_id = 7,  # cosmo_sky_id
+            sat_id = cosmo_sky.id,  # cosmo_sky_id
             name = "Andes Mountains",
             latitude = -32.6532,
             longitude = -70.0115,
@@ -325,7 +336,7 @@ def add_seed():
         )
 
         indian_ocean = Region(
-            sat_id = 8,  # insat_3d_id
+            sat_id = insat_3d.id,  # insat_3d_id
             name = "Indian Ocean",
             latitude = -10.0,
             longitude = 80.0,
@@ -335,7 +346,7 @@ def add_seed():
         )
 
         hurricane_zone = Region(
-            sat_id = 8,  # insat_3d_id
+            sat_id = insat_3d.id,  # insat_3d_id
             name = "Hurricane Formation Zone",
             latitude = 12.5,
             longitude = -60.0,
@@ -344,15 +355,17 @@ def add_seed():
             primary_focus = "Hurricane and storm tracking"
         )
 
+        print("Starts adding Regions")
         db.session.add_all([amazon, sahara, east_coast, mexico_gulf, great_barrier_reef, 
                             himalayas, philippine_sea, antarctica, greenland, andes_mountains, 
                             indian_ocean, hurricane_zone
                            ])
         db.session.commit()
+        print("Completes adding regions")
 
         #sat data
         surface_temp = SatelliteData(
-            sat_id = 1,  # Landsat-9 ID
+            sat_id = landsat.id,  # Landsat-9 ID
             data_type = "Surface Temperature",
             data_value = "32°C",
             date_recorded = date(2024, 12, 27),
@@ -363,7 +376,7 @@ def add_seed():
         )
 
         vegetation_index = SatelliteData(
-            sat_id = 1,  # Landsat-9 ID
+            sat_id = landsat.id,  # Landsat-9 ID
             data_type = "NDVI (Vegetation Index)",
             data_value = "0.75",
             date_recorded = date(2025, 3, 9),
@@ -374,7 +387,7 @@ def add_seed():
         )
 
         cloud_cover = SatelliteData(
-            sat_id = 2,  # GOES-16 ID
+            sat_id = geos.id,  # GOES-16 ID
             data_type = "Cloud Cover",
             data_value = "65%",
             date_recorded = date(2025, 2, 10),
@@ -385,7 +398,7 @@ def add_seed():
         )
 
         wind_speed = SatelliteData(
-            sat_id = 2,  # GOES-16 ID
+            sat_id = geos.id,  # GOES-16 ID
             data_type = "Wind Speed",
             data_value = "120 km/h",
             date_recorded = date(2025, 3, 6),
@@ -396,7 +409,7 @@ def add_seed():
         )
 
         ocean_temp = SatelliteData(
-            sat_id = 3,  # Sentinel-2 ID
+            sat_id = sentinel.id,  # Sentinel-2 ID
             data_type = "Sea Surface Temperature",
             data_value = "28°C",
             date_recorded = date(2025, 1, 15),
@@ -407,7 +420,7 @@ def add_seed():
         )
 
         air_quality = SatelliteData(
-            sat_id = 3,  # Sentinel-2 ID
+            sat_id = sentinel.id,  # Sentinel-2 ID
             data_type = "Air Quality Index",
             data_value = "AQI 42 (Good)",
             date_recorded = date(2025, 2, 5),
@@ -418,7 +431,7 @@ def add_seed():
         )
 
         hurricane_intensity = SatelliteData(
-            sat_id = 4,  # Himawari-8 ID
+            sat_id = himawari.id,  # Himawari-8 ID
             data_type = "Hurricane Intensity",
             data_value = "Category 4",
             date_recorded = date(2025, 3, 8),
@@ -429,7 +442,7 @@ def add_seed():
         )
 
         ozone_levels = SatelliteData(
-            sat_id = 5,  # Terra ID
+            sat_id = terra.id,  # Terra ID
             data_type = "Ozone Concentration",
             data_value = "290 DU",
             date_recorded = date(2025, 3, 10),
@@ -440,7 +453,7 @@ def add_seed():
         )
 
         sea_level_rise = SatelliteData(
-            sat_id = 6,  # Aqua ID
+            sat_id = aqua.id,  # Aqua ID
             data_type = "Sea Level Rise",
             data_value = "3.2 mm/year",
             date_recorded = date(2025, 1, 20),
@@ -451,7 +464,7 @@ def add_seed():
         )
 
         polar_ice_extent = SatelliteData(
-            sat_id = 6,  # Aqua ID
+            sat_id = aqua.id,  # Aqua ID
             data_type = "Polar Ice Extent",
             data_value = "12.5 million km²",
             date_recorded = date(2025, 2, 18),
@@ -462,7 +475,7 @@ def add_seed():
         )
 
         earthquake_detection = SatelliteData(
-            sat_id = 7,  # COSMO-SkyMed ID
+            sat_id = cosmo_sky.id,  # COSMO-SkyMed ID
             data_type = "Ground Displacement",
             data_value = "5.3 cm shift",
             date_recorded = date(2025, 3, 5),
@@ -473,7 +486,7 @@ def add_seed():
         )
 
         solar_radiation = SatelliteData(
-            sat_id = 8,  # INSAT-3D ID
+            sat_id = insat_3d.id,  # INSAT-3D ID
             data_type = "Solar Radiation",
             data_value = "1361 W/m²",
             date_recorded = date(2025, 2, 25),
@@ -484,7 +497,7 @@ def add_seed():
         )
 
         precipitation_rate = SatelliteData(
-            sat_id = 8,  # INSAT-3D ID
+            sat_id = insat_3d.id,  # INSAT-3D ID
             data_type = "Precipitation Rate",
             data_value = "15 mm/hr",
             date_recorded = date(2025, 3, 12),
@@ -497,7 +510,7 @@ def add_seed():
         # Inactive Satellite Data
 
         inactive_satellite_data = SatelliteData(
-            sat_id = 10,  # Hubble Space Telescope 
+            sat_id = hubble.id,  # Hubble Space Telescope 
             data_type = "Cosmic Radiation",
             data_value = "2.5 mSv",
             date_recorded = date(2021, 4, 30),  
@@ -508,7 +521,7 @@ def add_seed():
         )
 
         inactive_earth_observation = SatelliteData(
-            sat_id = 15,  #  Envisat 
+            sat_id = envisat.id,  #  Envisat 
             data_type = "Atmospheric Carbon Dioxide",
             data_value = "380 ppm",
             date_recorded = date(2012, 4, 8),  
@@ -519,7 +532,7 @@ def add_seed():
         )
 
         inactive_ocean_monitoring = SatelliteData(
-            sat_id = 16,  # SeaWiFS 
+            sat_id = seawifs.id,  # SeaWiFS 
             data_type = "Ocean Chlorophyll Concentration",
             data_value = "0.12 mg/m³",
             date_recorded = date(2010, 6, 16),  
@@ -529,13 +542,15 @@ def add_seed():
             satellite_orbit = "LEO",
         )
 
-
+        print("Starts adding satellite data")
         db.session.add_all([surface_temp, vegetation_index, cloud_cover, wind_speed, ocean_temp, air_quality, hurricane_intensity,
                             ozone_levels, sea_level_rise, polar_ice_extent, earthquake_detection, solar_radiation, precipitation_rate,
                             inactive_satellite_data, inactive_earth_observation, inactive_ocean_monitoring
                             ])
         db.session.commit()
+        print("Completes adding satellites data")
 
 add_seed()
+print("Completes seeding")
 
 
