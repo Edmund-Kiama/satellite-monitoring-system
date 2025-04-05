@@ -4,7 +4,7 @@
     import LandingPage from './components/LandingPage.vue';
     import {ref, onMounted} from 'vue';
 
-    const URL = 'http://localhost:5555'
+    const URL = 'https://satellite-monitoring-system.onrender.com'
     const satelliteURL = '/satellites'
     const dataURL = '/satellites-data'
     const regionURL = '/regions'
@@ -16,7 +16,7 @@
 
     const fetchSats = async () => {
         try{
-            let response = await fetch(satelliteURL)
+            let response = await fetch(URL+satelliteURL)
             sats.value = await response.json()
             
         } catch (error) {
@@ -25,7 +25,7 @@
     }
     const fetchSatData = async () => {
         try{
-            let response = await fetch(dataURL)
+            let response = await fetch(URL+dataURL)
             data.value = await response.json()
             
         } catch (error) {
@@ -34,7 +34,7 @@
     }
     const fetchRegions = async () => {
         try{
-            let response = await fetch(regionURL)
+            let response = await fetch(URL+regionURL)
             regions.value = await response.json()
             
         } catch (error) {
