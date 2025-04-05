@@ -7,7 +7,12 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 import os
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='../client/dist',
+    template_folder='../client/dist'
+)
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///monitoring.db")

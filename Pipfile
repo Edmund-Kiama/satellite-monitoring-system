@@ -13,6 +13,7 @@ sqlalchemy-serializer = "*"
 gunicorn = "*"
 psycopg2 = "*"
 honcho = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

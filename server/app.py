@@ -1,7 +1,12 @@
 from flask import request, make_response
 from models import db, Satellite, SatelliteData, Region, app
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
+@app.errorhandler(404)
+def not_found(e):
+    return make_response({"message": "404 Not Found"}, 404)
 
 @app.route('/')
 def home():

@@ -1,16 +1,4 @@
 <script setup>
-//  landsat = Satellite(
-//             name = "Landsat-9",
-//             orbit_type = "LEO",
-//             status = "active",
-//             description = "NASA's Earth observation satellite",
-//             image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/LANDSAT-9.jpg/1024px-LANDSAT-9.jpg",
-//             country = "USA",
-//             altitude = "705 km",
-//             speed = "7.5 km/s",
-//             launch_date = date(2021,9,27),
-//             type = "Earth observation"
-//         )
    
     import Navbar from './components/Navbar.vue';
     import LandingPage from './components/LandingPage.vue';
@@ -28,7 +16,7 @@
 
     const fetchSats = async () => {
         try{
-            let response = await fetch(URL+satelliteURL)
+            let response = await fetch(satelliteURL)
             sats.value = await response.json()
             
         } catch (error) {
@@ -37,7 +25,7 @@
     }
     const fetchSatData = async () => {
         try{
-            let response = await fetch(URL+dataURL)
+            let response = await fetch(dataURL)
             data.value = await response.json()
             
         } catch (error) {
@@ -46,7 +34,7 @@
     }
     const fetchRegions = async () => {
         try{
-            let response = await fetch(URL+regionURL)
+            let response = await fetch(regionURL)
             regions.value = await response.json()
             
         } catch (error) {
