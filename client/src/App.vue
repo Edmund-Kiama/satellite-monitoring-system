@@ -56,7 +56,9 @@
         <div v-if="sats && data && regions">
             <router-view :satellites="sats" :data="data" :regions="regions" />
         </div>        
-        <p v-else>Loading...</p>
+        <div class="load">
+            <img class="loading-gif" src="https://i.pinimg.com/originals/b8/71/76/b8717641f46cdfdced2c86e984f07c11.gif" alt="loading" >
+        </div>
     </div>
 
 </template>
