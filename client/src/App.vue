@@ -12,7 +12,7 @@
     let sats = ref(null)
     let data = ref(null)
     let regions = ref(null)
-    let error = ref(null)
+    let loaded = ref(true)
 
     const fetchSats = async () => {
         try{
@@ -36,6 +36,7 @@
         try{
             let response = await fetch(URL+regionURL)
             regions.value = await response.json()
+            loaded.value = false
             
         } catch (error) {
             error.value = "Failed to Fetch"
@@ -56,7 +57,7 @@
         <div v-if="sats && data && regions">
             <router-view :satellites="sats" :data="data" :regions="regions" />
         </div>        
-        <div class="load" v-else>
+        <div class="load" :style="{ display: loaded ? 'block' : 'none' }">
             <img class="loading-gif" src="https://i.pinimg.com/originals/b8/71/76/b8717641f46cdfdced2c86e984f07c11.gif" alt="loading" >
         </div>
     </div>
